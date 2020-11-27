@@ -193,15 +193,15 @@ module.exports = function (webpackEnv) {
             ],
             panel: [webpackDevClientEntry, paths.panelIndexJs],
             popup: [webpackDevClientEntry, paths.popupIndexJs],
-            background: "./src/background/index.js",
-            content: "./src/content/index.js",
+            background: [webpackDevClientEntry, paths.backgroundJs],
+            content: [webpackDevClientEntry, paths.contentJs],
           }
         : {
             main: paths.appIndexJs,
             panel: paths.panelIndexJs,
             popup: paths.popupIndexJs,
-            background: "./src/background/index.js",
-            content: "./src/content/index.js",
+            background: paths.backgroundJs,
+            content: paths.contentJs,
           },
     output: {
       // The build folder.

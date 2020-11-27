@@ -1,5 +1,5 @@
 /* globals chrome */
-import { toggle, getActiveTab } from "@/common";
+import { toggle } from "@/common";
 
 chrome.commands.onCommand.addListener((command) => {
   if (command === "toggle-xpath") {

@@ -40,5 +40,5 @@
     "<all_urls>",
     "notifications"
   ],
-  "web_accessible_resources": ["insert.js"]
+  "web_accessible_resources": []
 }

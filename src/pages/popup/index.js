@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button, Col, Row, Input, Form } from "antd";
-import { toggle, close, deactivateItem } from "@/common";
+import { toggle, close } from "@/common";
 import styles from "./index.less";
 
 function Popup() {

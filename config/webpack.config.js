@@ -191,12 +191,15 @@ module.exports = function (webpackEnv) {
               // initialization, it doesn't blow up the WebpackDevServer client, and
               // changing JS code would still trigger a refresh.
             ],
-            // panel: [webpackDevClientEntry, paths.panelIndexJs],
+            panel: [webpackDevClientEntry, paths.panelIndexJs],
+            popup: [webpackDevClientEntry, paths.popupIndexJs],
             background: "./src/background/index.js",
             content: "./src/content/index.js",
           }
         : {
             main: paths.appIndexJs,
+            panel: paths.panelIndexJs,
+            popup: paths.popupIndexJs,
             background: "./src/background/index.js",
             content: "./src/content/index.js",
           },
@@ -582,6 +585,61 @@ module.exports = function (webpackEnv) {
             inject: true,
             chunks: ["main"],
             template: paths.appHtml,
+            filename: "index.html",
+          },
+          isEnvProduction
+            ? {
+                minify: {
+                  removeComments: true,
+                  collapseWhitespace: true,
+                  removeRedundantAttributes: true,
+                  useShortDoctype: true,
+                  removeEmptyAttributes: true,
+                  removeStyleLinkTypeAttributes: true,
+                  keepClosingSlash: true,
+                  minifyJS: true,
+                  minifyCSS: true,
+                  minifyURLs: true,
+                },
+              }
+            : undefined
+        )
+      ),
+      new HtmlWebpackPlugin(
+        Object.assign(
+          {},
+          {
+            inject: true,
+            chunks: ["panel"],
+            template: paths.panelHtml,
+            filename: "panel.html",
+          },
+          isEnvProduction
+            ? {
+                minify: {
+                  removeComments: true,
+                  collapseWhitespace: true,
+                  removeRedundantAttributes: true,
+                  useShortDoctype: true,
+                  removeEmptyAttributes: true,
+                  removeStyleLinkTypeAttributes: true,
+                  keepClosingSlash: true,
+                  minifyJS: true,
+                  minifyCSS: true,
+                  minifyURLs: true,
+                },
+              }
+            : undefined
+        )
+      ),
+      new HtmlWebpackPlugin(
+        Object.assign(
+          {},
+          {
+            inject: true,
+            chunks: ["popup"],
+            template: paths.popupHtml,
+            filename: "popup.html",
           },
           isEnvProduction
             ? {
